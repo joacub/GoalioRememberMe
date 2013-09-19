@@ -17,7 +17,7 @@ class RememberMeController extends AbstractActionController
             $rememberMe->createSerie($this->zfcUserAuthentication()->getIdentity()->getId());
             // Reference for weak login. Should not be allowed to change PW etc.
             $session = new \Zend\Session\Container('zfcuser');
-            $session->offsetSet("cookieLogin", true);
+            $session->offsetSet("cookieLogin", false);
         }        
         if($this->params()->fromQuery('redirect'))
             return $this->redirect()->toUrl($this->params()->fromQuery('redirect'));
