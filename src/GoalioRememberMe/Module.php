@@ -26,7 +26,7 @@ class Module {
         return array(
             'invokables' => array(
                 'GoalioRememberMe\Authentication\Adapter\Cookie' => 'GoalioRememberMe\Authentication\Adapter\Cookie',
-                'GoalioRememberMe\Authentication\Adapter\Db'     => 'GoalioRememberMe\Authentication\Adapter\Db',
+                'ZfcUser\Authentication\Adapter\Db'     => 'GoalioRememberMe\Authentication\Adapter\Db',
                 'GoalioRememberMe\Form\Login'                    => 'GoalioRememberMe\Form\Login',
                 'goaliorememberme_rememberme_service'            => 'GoalioRememberMe\Service\RememberMe',
             ),
