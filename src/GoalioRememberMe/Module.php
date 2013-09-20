@@ -70,11 +70,15 @@ class Module {
 
         // do autologin only if not done before and cookie is present
         if(!$userIsLoggedIn && isset($cookie['remember_me'])) {
-            $adapter = $e->getApplication()->getServiceManager()->get('ZfcUser\Authentication\Adapter\AdapterChain');
-            $adapter->prepareForAuthentication($e->getRequest());
-            $authService = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service');
-
-            $auth = $authService->authenticate($adapter);
+            try {
+                $adapter = $e->getApplication()->getServiceManager()->get('ZfcUser\Authentication\Adapter\AdapterChain');
+                $adapter->prepareForAuthentication($e->getRequest());
+                $authService = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service');
+    
+                $auth = $authService->authenticate($adapter);
+            } catch(\Exception $e) {
+            	
+            }
         }
     }
 }
