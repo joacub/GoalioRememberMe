@@ -26,6 +26,7 @@ class Module {
         return array(
             'invokables' => array(
                 'GoalioRememberMe\Authentication\Adapter\Cookie' => 'GoalioRememberMe\Authentication\Adapter\Cookie',
+                'GoalioRememberMe\Authentication\Adapter\Db'     => 'GoalioRememberMe\Authentication\Adapter\Db',
                 'GoalioRememberMe\Form\Login'                    => 'GoalioRememberMe\Form\Login',
                 'goaliorememberme_rememberme_service'            => 'GoalioRememberMe\Service\RememberMe',
             ),
@@ -70,15 +71,11 @@ class Module {
 
         // do autologin only if not done before and cookie is present
         if(!$userIsLoggedIn && isset($cookie['remember_me'])) {
-            try {
-                $adapter = $e->getApplication()->getServiceManager()->get('ZfcUser\Authentication\Adapter\AdapterChain');
-                $adapter->prepareForAuthentication($e->getRequest());
-                $authService = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service');
-    
-                $auth = $authService->authenticate($adapter);
-            } catch(\Exception $e) {
-            	
-            }
+            $adapter = $e->getApplication()->getServiceManager()->get('ZfcUser\Authentication\Adapter\AdapterChain');
+            $adapter->prepareForAuthentication($e->getRequest());
+            $authService = $e->getApplication()->getServiceManager()->get('zfcuser_auth_service');
+
+            $auth = $authService->authenticate($adapter);
         }
     }
 }
