@@ -165,7 +165,7 @@ class Cookie extends AbstractAdapter implements ServiceManagerAwareInterface
 
         $cookie = explode("\n", $this->getRememberMeService()->getCookie());
 
-        if($cookie[0] !== '') {
+        if($cookie[0] !== '' && $user) {
             $this->getRememberMeService()->removeSerie($user->getId(), $cookie[1]);
             $this->getRememberMeService()->removeCookie();
         }
